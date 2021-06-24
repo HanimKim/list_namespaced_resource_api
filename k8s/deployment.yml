@@ -1,0 +1,29 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "krema-server-deploy"
+  namespace: "krema"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "krema-server-pod"
+  template:
+    metadata:
+      labels:
+        app: "krema-server-pod"
+    spec:
+      containers:
+        - image: "digitalkds/krema:0.11"
+          name: "krema-server-container"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+          imagePullPolicy: "IfNotPresent"
+          readinessProbe:
+            tcpSocket:
+              port: 8000

@@ -1,0 +1,22 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: krema-role-cluster
+rules:
+- apiGroups: ["","extensions"]
+  resources: ["namespaces","pods","services","ingresses"]
+  verbs: ["list"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: krema-rolebinding-cluster
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: krema
+roleRef:
+  kind: ClusterRole
+  name: krema-role-cluster
+  apiGroup: rbac.authorization.k8s.io
