@@ -11,7 +11,7 @@ from collections import OrderedDict
 def get_name_of_namespace_api(request):
     """ ## 모든 namespace의 name 정보를 배열로 리턴해주는 API ##
         params :
-        return : ['defualt', 'spaceone', ...]N
+        return : ['defualt', 'spaceone', ...]
     """
     # config.load_kube_config()       # 로컬환경에서 테스트시 사용.
     config.load_incluster_config()  # 서버에 올릴 때 사용.
